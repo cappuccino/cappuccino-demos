@@ -60,58 +60,58 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
     var bounds = [contentView bounds];
 
-    var listScrollView = [[CPScrollView alloc] initWithFrame: CGRectMake(0, 0, 199, CGRectGetHeight(bounds))];
-    [listScrollView setAutohidesScrollers: YES];
+    var listScrollView = [[CPScrollView alloc] initWithFrame:CGRectMake(0, 0, 199, CGRectGetHeight(bounds))];
+    [listScrollView setAutohidesScrollers:YES];
         
     var photosListItem = [[CPCollectionViewItem alloc] init];
-    [photosListItem setView: [[PhotosListCell alloc] initWithFrame:CGRectMakeZero()]];
+    [photosListItem setView:[[PhotosListCell alloc] initWithFrame:CGRectMakeZero()]];
 
-    listCollectionView = [[CPCollectionView alloc] initWithFrame: CGRectMake(0, 0, 199, CGRectGetHeight(bounds))];
+    listCollectionView = [[CPCollectionView alloc] initWithFrame:CGRectMake(0, 0, 199, CGRectGetHeight(bounds))];
 
-    [listCollectionView setDelegate: self];
-    [listCollectionView setItemPrototype: photosListItem];
+    [listCollectionView setDelegate:self];
+    [listCollectionView setItemPrototype:photosListItem];
     
     [listCollectionView setMinItemSize:CGSizeMake(20.0, 55.0)];
     [listCollectionView setMaxItemSize:CGSizeMake(1000.0, 55.0)];
     [listCollectionView setMaxNumberOfColumns:1];
     
     [listCollectionView setVerticalMargin:0.0];
-    [listCollectionView setAutoresizingMask: CPViewWidthSizable];
+    [listCollectionView setAutoresizingMask:CPViewWidthSizable];
 
-    [listScrollView setDocumentView: listCollectionView];        
-    [[listScrollView contentView] setBackgroundColor: [CPColor colorWithCalibratedRed:213.0/255.0 green:221.0/255.0 blue:230.0/255.0 alpha:1.0]];
+    [listScrollView setDocumentView:listCollectionView];        
+    [[listScrollView contentView] setBackgroundColor:[CPColor colorWithCalibratedRed:213.0/255.0 green:221.0/255.0 blue:230.0/255.0 alpha:1.0]];
 
-    [contentView addSubview: listScrollView];    
+    [contentView addSubview:listScrollView];    
 
     //border
     var borderView = [[CPView alloc] initWithFrame:CGRectMake(199, 0, 1, CGRectGetHeight(bounds))];
     
-    [borderView setBackgroundColor: [CPColor blackColor]];
-    [borderView setAutoresizingMask: CPViewHeightSizable];
+    [borderView setBackgroundColor:[CPColor blackColor]];
+    [borderView setAutoresizingMask:CPViewHeightSizable];
     
-    [contentView addSubview: borderView];
+    [contentView addSubview:borderView];
 
     var photoItem = [[CPCollectionViewItem alloc] init];
-    [photoItem setView: [[PhotoCell alloc] initWithFrame:CGRectMake(0, 0, 150, 150)]];
+    [photoItem setView:[[PhotoCell alloc] initWithFrame:CGRectMake(0, 0, 150, 150)]];
 
     var scrollView = [[CPScrollView alloc] initWithFrame:CGRectMake(200, 0, CGRectGetWidth(bounds) - 200, CGRectGetHeight(bounds))];
 
-    photosCollectionView = [[CPCollectionView alloc] initWithFrame: CGRectMake(0, 0, CGRectGetWidth(bounds) - 200, 0)];
+    photosCollectionView = [[CPCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(bounds) - 200, 0)];
 
-    [photosCollectionView setDelegate: self];
-    [photosCollectionView setItemPrototype: photoItem];
+    [photosCollectionView setDelegate:self];
+    [photosCollectionView setItemPrototype:photoItem];
     
     [photosCollectionView setMinItemSize:CGSizeMake(150, 150)];
     [photosCollectionView setMaxItemSize:CGSizeMake(150, 150)];
-    [photosCollectionView setAutoresizingMask: CPViewWidthSizable];
+    [photosCollectionView setAutoresizingMask:CPViewWidthSizable];
     
-    [scrollView setAutoresizingMask: CPViewHeightSizable | CPViewWidthSizable];
-    [scrollView setDocumentView: photosCollectionView];
-    [scrollView setAutohidesScrollers: YES];
+    [scrollView setAutoresizingMask:CPViewHeightSizable | CPViewWidthSizable];
+    [scrollView setDocumentView:photosCollectionView];
+    [scrollView setAutohidesScrollers:YES];
 
     [[scrollView contentView] setBackgroundColor:[CPColor colorWithCalibratedWhite:0.25 alpha:1.0]];
     
-    [contentView addSubview: scrollView];    
+    [contentView addSubview:scrollView];    
 
 
     //bring forward the window
@@ -124,7 +124,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     var request = [CPURLRequest requestWithURL:"http://www.flickr.com/services/rest/?method=flickr.interestingness.getList&per_page=20&format=json&api_key=ca4dd89d3dfaeaf075144c3fdec76756"];
     
     // see important note about CPJSONPConnection above
-    var connection = [CPJSONPConnection sendRequest: request callback: "jsoncallback" delegate: self];
+    var connection = [CPJSONPConnection sendRequest:request callback:"jsoncallback" delegate:self];
     
     lastIdentifier = "Interesting Photos";
 }
@@ -140,7 +140,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
                                                     "&media=photos&machine_tag_mode=any&per_page=20&format=json&api_key=ca4dd89d3dfaeaf075144c3fdec76756"];
     
         // see important note about CPJSONPConnection above
-        tagConnection = [CPJSONPConnection sendRequest: request callback: "jsoncallback" delegate: self];
+        tagConnection = [CPJSONPConnection sendRequest:request callback:"jsoncallback" delegate:self];
         
         lastIdentifier = string;
     }
@@ -148,25 +148,25 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 - (void)remove:(id)sender
 {
-    [self removeImageListWithIdentifier: [[photosets allKeys] objectAtIndex:[[listCollectionView selectionIndexes] firstIndex]]];
+    [self removeImageListWithIdentifier:[[photosets allKeys] objectAtIndex:[[listCollectionView selectionIndexes] firstIndex]]];
 }
 
 - (void)addImageList:(CPArray)images withIdentifier:(CPString)aString
 {
     [photosets setObject:images forKey:aString];
     
-    [listCollectionView setContent: [[photosets allKeys] copy]];
-    [listCollectionView setSelectionIndexes: [CPIndexSet indexSetWithIndex: [[photosets allKeys] indexOfObject: aString]]];
+    [listCollectionView setContent:[[photosets allKeys] copy]];
+    [listCollectionView setSelectionIndexes:[CPIndexSet indexSetWithIndex:[[photosets allKeys] indexOfObject:aString]]];
 }
 
 - (void)removeImageListWithIdentifier:(CPString)aString
 {
-    var nextIndex = MAX([[listCollectionView content] indexOfObject: aString] - 1, 0);
+    var nextIndex = MAX([[listCollectionView content] indexOfObject:aString] - 1, 0);
     
     [photosets removeObjectForKey:aString];
 
-    [listCollectionView setContent: [[photosets allKeys] copy]];
-    [listCollectionView setSelectionIndexes: [CPIndexSet indexSetWithIndex: nextIndex]];    
+    [listCollectionView setContent:[[photosets allKeys] copy]];
+    [listCollectionView setSelectionIndexes:[CPIndexSet indexSetWithIndex:nextIndex]];    
 }
 
 - (void)adjustImageSize:(id)sender
@@ -184,14 +184,14 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
         var listIndex = [[listCollectionView selectionIndexes] firstIndex],
             key = [listCollectionView content][listIndex];
             
-        [photosCollectionView setContent: [photosets objectForKey:key]];
-        [photosCollectionView setSelectionIndexes: [CPIndexSet indexSet]];
+        [photosCollectionView setContent:[photosets objectForKey:key]];
+        [photosCollectionView setSelectionIndexes:[CPIndexSet indexSet]];
     }
 }
 
 - (void)connection:(CPJSONPConnection)aConnection didReceiveData:(CPString)data
 {
-    [self addImageList: data.photos.photo withIdentifier: lastIdentifier];
+    [self addImageList:data.photos.photo withIdentifier:lastIdentifier];
 }
 
 - (void)connection:(CPJSONPConnection)aConnection didFailWithError:(CPString)error
@@ -211,25 +211,26 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 - (CPToolbarItem)toolbar:(CPToolbar)aToolbar itemForItemIdentifier:(CPString)anItemIdentifier willBeInsertedIntoToolbar:(BOOL)aFlag
 {
-    var toolbarItem = [[CPToolbarItem alloc] initWithItemIdentifier: anItemIdentifier];
+    var toolbarItem = [[CPToolbarItem alloc] initWithItemIdentifier:anItemIdentifier];
 
     if (anItemIdentifier == SliderToolbarItemIdentifier)
     {
-        [toolbarItem setView: [[PhotoResizeView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)]];
-        [toolbarItem setMinSize:CGSizeMake(180, 50)];
-        [toolbarItem setMaxSize:CGSizeMake(180, 50)];
+        [toolbarItem setView:[[PhotoResizeView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)]];
+        [toolbarItem setMinSize:CGSizeMake(180, 32)];
+        [toolbarItem setMaxSize:CGSizeMake(180, 32)];
+        [toolbarItem setLabel:"Scale"];
     }
     else if (anItemIdentifier == AddToolbarItemIdentifier)
     {
         var image = [[CPImage alloc] initWithContentsOfFile:"Resources/add.png" size:CPSizeMake(30, 25)],
             highlighted = [[CPImage alloc] initWithContentsOfFile:"Resources/addHighlighted.png" size:CPSizeMake(30, 25)];
             
-        [toolbarItem setImage: image];
-        [toolbarItem setAlternateImage: highlighted];
+        [toolbarItem setImage:image];
+        [toolbarItem setAlternateImage:highlighted];
         
-        [toolbarItem setTarget: self];
-        [toolbarItem setAction: @selector(add:)];
-        [toolbarItem setLabel: "Add Photo List"];
+        [toolbarItem setTarget:self];
+        [toolbarItem setAction:@selector(add:)];
+        [toolbarItem setLabel:"Add Photo List"];
 
         [toolbarItem setMinSize:CGSizeMake(32, 32)];
         [toolbarItem setMaxSize:CGSizeMake(32, 32)];
@@ -239,12 +240,12 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
         var image = [[CPImage alloc] initWithContentsOfFile:"Resources/remove.png" size:CPSizeMake(30, 25)],
             highlighted = [[CPImage alloc] initWithContentsOfFile:"Resources/removeHighlighted.png" size:CPSizeMake(30, 25)];
             
-        [toolbarItem setImage: image];
-        [toolbarItem setAlternateImage: highlighted];
+        [toolbarItem setImage:image];
+        [toolbarItem setAlternateImage:highlighted];
 
-        [toolbarItem setTarget: self];
-        [toolbarItem setAction: @selector(remove:)];
-        [toolbarItem setLabel: "Remove Photo List"];
+        [toolbarItem setTarget:self];
+        [toolbarItem setAction:@selector(remove:)];
+        [toolbarItem setLabel:"Remove Photo List"];
         
         [toolbarItem setMinSize:CGSizeMake(32, 32)];
         [toolbarItem setMaxSize:CGSizeMake(32, 32)];
@@ -263,39 +264,39 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 {
     self = [super initWithFrame:aFrame];
     
-    var slider = [[CPSlider alloc] initWithFrame: CGRectMake(38, CGRectGetHeight(aFrame)/2.0 - 8, CGRectGetWidth(aFrame) - 80, 16)];
+    var slider = [[CPSlider alloc] initWithFrame:CGRectMake(38, CGRectGetHeight(aFrame)/2.0 - 8, CGRectGetWidth(aFrame) - 80, 16)];
 
-    [slider setMinValue: 50.0];
-    [slider setMaxValue: 250.0];
-    [slider setTarget: self];
-    [slider setAction: @selector(sliderChangedValue:)];
+    [slider setMinValue:50.0];
+    [slider setMaxValue:250.0];
+    [slider setTarget:self];
+    [slider setAction:@selector(sliderChangedValue:)];
     
-    [self addSubview: slider];
+    [self addSubview:slider];
 
-    [slider setValue: 150.0];
+    [slider setValue:150.0];
                                                              
-    var label = [[CPTextField alloc] initWithFrame: CGRectMake(0, CGRectGetHeight(aFrame)/2.0 - 12, 40, 16)];
+    var label = [[CPTextField alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(aFrame)/2.0 - 12, 40, 16)];
     
-    [label setAlignment: CPCenterTextAlignment];
-    [label setFont: [CPFont systemFontOfSize: 12.0]];
-    [label setStringValue: "50"];
+    [label setAlignment:CPCenterTextAlignment];
+    [label setFont:[CPFont systemFontOfSize:12.0]];
+    [label setStringValue:"50"];
     
-    [self addSubview: label];
+    [self addSubview:label];
 
-    label = [[CPTextField alloc] initWithFrame: CGRectMake(CGRectGetWidth(aFrame) - 40, CGRectGetHeight(aFrame)/2.0 - 12, 40, 16)];
+    label = [[CPTextField alloc] initWithFrame:CGRectMake(CGRectGetWidth(aFrame) - 40, CGRectGetHeight(aFrame)/2.0 - 12, 40, 16)];
     
-    [label setAlignment: CPCenterTextAlignment];
-    [label setFont: [CPFont systemFontOfSize: 12.0]];
-    [label setStringValue: "250"];
+    [label setAlignment:CPCenterTextAlignment];
+    [label setFont:[CPFont systemFontOfSize:12.0]];
+    [label setStringValue:"250"];
     
-    [self addSubview: label];
+    [self addSubview:label];
     
     return self;
 }
 
 - (void)sliderChangedValue:(id)sender
 {
-    [CPApp sendAction:@selector(adjustImageSize:) to: nil from: sender];
+    [CPApp sendAction:@selector(adjustImageSize:) to:nil from:sender];
 }
 
 @end
@@ -313,16 +314,16 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     {
         label = [[CPTextField alloc] initWithFrame:CGRectInset([self bounds], 4, 4)];
         
-        [label setFont: [CPFont systemFontOfSize: 16.0]];
-        [label setTextColor: [CPColor blackColor]];
+        [label setFont:[CPFont systemFontOfSize:16.0]];
+        [label setTextColor:[CPColor blackColor]];
         
-        [self addSubview: label];
+        [self addSubview:label];
     }
 
-    [label setStringValue: anObject];
+    [label setStringValue:anObject];
     [label sizeToFit];
 
-    [label setFrameOrigin: CGPointMake(10,CGRectGetHeight([label bounds]) / 2.0)];
+    [label setFrameOrigin:CGPointMake(10,CGRectGetHeight([label bounds]) / 2.0)];
 }
 
 - (void)setSelected:(BOOL)flag
@@ -330,18 +331,18 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     if(!highlightView)
     {
         highlightView = [[CPView alloc] initWithFrame:CGRectCreateCopy([self bounds])];
-        [highlightView setBackgroundColor: [CPColor blueColor]];
+        [highlightView setBackgroundColor:[CPColor blueColor]];
     }
 
     if(flag)
     {
-        [self addSubview:highlightView positioned:CPWindowBelow relativeTo: label];
-        [label setTextColor: [CPColor whiteColor]];    
+        [self addSubview:highlightView positioned:CPWindowBelow relativeTo:label];
+        [label setTextColor:[CPColor whiteColor]];    
     }
     else
     {
         [highlightView removeFromSuperview];
-        [label setTextColor: [CPColor blackColor]];
+        [label setTextColor:[CPColor blackColor]];
     }
 }
 
@@ -361,29 +362,29 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     if(!imageView)
     {
         imageView = [[CPImageView alloc] initWithFrame:CGRectMakeCopy([self bounds])];
-        [imageView setAutoresizingMask: CPViewWidthSizable | CPViewHeightSizable];
-        [imageView setImageScaling: CPScaleProportionally];
+        [imageView setAutoresizingMask:CPViewWidthSizable | CPViewHeightSizable];
+        [imageView setImageScaling:CPScaleProportionally];
         [imageView setHasShadow:YES];
-        [self addSubview: imageView];
+        [self addSubview:imageView];
     }
     
     imageInfo = anObject;
     
-    [image setDelegate: nil];
+    [image setDelegate:nil];
     
-    image = [[CPImage alloc] initWithContentsOfFile: thumbForFlickrPhoto(anObject)];
+    image = [[CPImage alloc] initWithContentsOfFile:thumbForFlickrPhoto(anObject)];
 
-    [image setDelegate: self];
+    [image setDelegate:self];
     
     if([image loadStatus] == CPImageLoadStatusCompleted)
-        [imageView setImage: image];
+        [imageView setImage:image];
     else
-        [imageView setImage: nil];
+        [imageView setImage:nil];
 }
 
 - (void)imageDidLoad:(CPImage)anImage
 {
-    [imageView setImage: anImage];
+    [imageView setImage:anImage];
 }
 
 - (void)setSelected:(BOOL)flag
@@ -391,13 +392,13 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     if(!highlightView)
     {
         highlightView = [[CPView alloc] initWithFrame:CGRectCreateCopy([self bounds])];
-        [highlightView setBackgroundColor: [CPColor colorWithCalibratedWhite: 0.8 alpha: 0.6]];
+        [highlightView setBackgroundColor:[CPColor colorWithCalibratedWhite:0.8 alpha:0.6]];
     }
 
     if(flag)
     {
         [highlightView setFrame:CGRectInset([imageView imageRect], -10.0, -10.0)];
-        [self addSubview:highlightView positioned:CPWindowBelow relativeTo: imageView];
+        [self addSubview:highlightView positioned:CPWindowBelow relativeTo:imageView];
     }
     else
         [highlightView removeFromSuperview];

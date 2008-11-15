@@ -1,0 +1,68 @@
+diff /Users/tolmasky/Development/FloorPlanEdited/AppController.j /Users/tolmasky/Development/FloorPlan/AppController.j
+64,77d63
+<     
+<     var undoButton = [[CPButton alloc] initWithFrame:CGRectMake(20.0, 400.0, 60.0, 18.0)],
+<         redoButton = [[CPButton alloc] initWithFrame:CGRectMake(90.0, 400.0, 60.0, 18.0)];
+<     
+<     [undoButton setTitle:"Undo"];
+<     [undoButton setTarget:[theWindow undoManager]];
+<     [undoButton setAction:@selector(undo)];
+<     
+<     [redoButton setTitle:"Redo"];
+<     [redoButton setTarget:[theWindow undoManager]];
+<     [redoButton setAction:@selector(redo)];
+<     
+<     [view addSubview:undoButton];
+<     [view addSubview:redoButton];
+diff /Users/tolmasky/Development/FloorPlanEdited/FloorPlanView.j /Users/tolmasky/Development/FloorPlan/FloorPlanView.j
+33,34d32
+<     [[[self window] undoManager] registerUndoWithTarget:self selector:@selector(removeFurnitureView:) object:aFurnitureView];
+< 
+42,43d39
+<     [[[self window] undoManager] registerUndoWithTarget:self selector:@selector(addFurnitureView:) object:aFurnitureView];
+< 
+Common subdirectories: /Users/tolmasky/Development/FloorPlanEdited/Frameworks and /Users/tolmasky/Development/FloorPlan/Frameworks
+diff /Users/tolmasky/Development/FloorPlanEdited/FurnitureView.j /Users/tolmasky/Development/FloorPlan/FurnitureView.j
+15d14
+<     float       editedRotationRadians;
+18d16
+<     CGPoint     editedOrigin;
+52d49
+<     editedRotationRadians = rotationRadians;
+57d53
+<     [self setEditedRotationRadians:rotationRadians];
+72,83d67
+< - (void)setEditedRotationRadians:(float)radians
+< {
+<     if (editedRotationRadians == radians)
+<         return;
+<     
+<     [[[self window] undoManager] registerUndoWithTarget:self selector:@selector(setEditedRotationRadians:) object:editedRotationRadians];
+< 
+<     [self setRotationRadians:radians];
+<     
+<     editedRotationRadians = radians;
+< }
+< 
+91,92d74
+<     editedOrigin = [self frame].origin;
+<     
+108,124d89
+< - (void)mouseUp:(CPEvent)anEvent
+< {
+<     [self setEditedOrigin:[self frame].origin];
+< }
+< 
+< - (void)setEditedOrigin:(CGPoint)aPoint
+< {
+<     if (CGPointEqualToPoint(editedOrigin, aPoint))
+<         return;
+< 
+<     [[[self window] undoManager] registerUndoWithTarget:self selector:@selector(setEditedOrigin:) object:editedOrigin];
+< 
+<     editedOrigin = aPoint;
+<     
+<     [self setFrameOrigin:aPoint];
+< }
+< 
+Common subdirectories: /Users/tolmasky/Development/FloorPlanEdited/Resources and /Users/tolmasky/Development/FloorPlan/Resources

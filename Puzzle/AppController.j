@@ -58,6 +58,7 @@ var kBoardWidth=4,
     _stopShuffleImage = [[CPImage alloc] initWithContentsOfFile:"Resources/stopButton.png" size:CPSizeMake(121, 96)];
     _reshuffleButton = [[CPButton alloc] initWithFrame:CPRectMake(23, 320+5, 121, 96)];
     
+    [_reshuffleButton setBordered:NO];
     [_reshuffleButton setImage:_shuffleImage];
     [_reshuffleButton setTarget:self];
     [_reshuffleButton setAction:@selector(toggleShuffle)];
@@ -67,6 +68,7 @@ var kBoardWidth=4,
     var chooseImage = [[CPImage alloc] initWithContentsOfFile:"Resources/switchButton.png" size:CPSizeMake(121, 96)];
     _chooseButton = [[CPButton alloc] initWithFrame:CPRectMake(176, 320+5, 121, 96)];
   
+    [_chooseButton setBordered:NO];
     [_chooseButton setImage:chooseImage];
     [_chooseButton setTarget:self];
     [_chooseButton setAction:@selector(togglePhotoBrowser)];

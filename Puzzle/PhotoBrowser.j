@@ -59,6 +59,7 @@
     _okay = [[CPButton alloc] initWithFrame:CPRectMake(176, 326, 121, 96)];    
     [_okay setImage:[[CPImage alloc] initWithContentsOfFile:"Resources/okayButton.png" size:CPSizeMake(121, 96)]];
     
+    [_okay setBordered:NO];
     [_okay setTarget:self];
     [_okay setAction:@selector(ok:)];
     [_okay registerForClicks];
@@ -68,6 +69,7 @@
     _cancel = [[CPButton alloc] initWithFrame:CPRectMake(23, 326, 121, 96)];    
     [_cancel setImage: [[CPImage alloc] initWithContentsOfFile:"Resources/cancelButton.png" size:CPSizeMake(121, 96)]];
     
+    [_cancel setBordered:NO];
     [_cancel setTarget:self];
     [_cancel setAction:@selector(cancel:)];
     [_cancel registerForClicks];

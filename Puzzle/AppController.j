@@ -374,9 +374,7 @@ var kBoardWidth=4,
             if (!CPPointEqualToPoint(startRects[i].origin, rects[i].origin)) 
                 finished = NO;       
         }
-        
-        [[CPRunLoop currentRunLoop] performSelectors];
-        
+
         if (!finished) 
             window.setTimeout(animationFunction, 50);
         else

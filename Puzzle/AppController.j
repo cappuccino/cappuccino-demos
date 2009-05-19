@@ -9,7 +9,6 @@
 @import <Foundation/CPObject.j>
 @import "PhotoBrowser.j"
 
-
 var kBoardWidth=4,
     kBoardHeight=4,
     kSpacing=1;
@@ -81,8 +80,9 @@ var kBoardWidth=4,
         
     for(var i=0; i<_clipViews.length; i++)
     {
-        _originalPositions[i] = [[CPImageView alloc] initWithFrame:CPRectMake(0,0,320,480)];
+        _originalPositions[i] = [[CPButton alloc] initWithFrame:CPRectMake(0,0,320,480)];
         
+        [_originalPositions[i] setBordered:NO];
         [_originalPositions[i] setTarget: self];
         [_originalPositions[i] setAction: @selector(onClick:)];
         [_originalPositions[i] registerForClicks];

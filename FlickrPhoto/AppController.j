@@ -366,6 +366,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 {
     CPImage         image;
     CPImageView     imageView;
+    CPView          highlightView;
 }
 
 - (void)setRepresentedObject:(JSObject)anObject
@@ -398,6 +399,20 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 - (void)setSelected:(BOOL)flag
 {
+    if(!highlightView)
+    {
+        highlightView = [[CPView alloc] initWithFrame:[self bounds]];
+        [highlightView setBackgroundColor:[CPColor colorWithCalibratedWhite:0.8 alpha:0.6]];
+        [highlightView setAutoresizingMask:CPViewWidthSizable|CPViewHeightSizable];
+    }
+
+    if(flag)
+    {
+        [highlightView setFrame:[self bounds]];
+        [self addSubview:highlightView positioned:CPWindowBelow relativeTo:imageView];
+    }
+    else
+        [highlightView removeFromSuperview];
 }
 
 @end

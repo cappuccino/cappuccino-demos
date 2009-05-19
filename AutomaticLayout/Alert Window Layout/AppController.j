@@ -12,7 +12,7 @@
 
     [theWindow orderFront:self];
     
-    var alertWindow = [[CPWindow alloc] initWithContentRect:CGRectMake(10.0, 10.0, 400.0, 160.0) styleMask:CPHUDBackgroundWindowMask | CPClosableWindowMask | CPResizableWindowMask];
+    var alertWindow = [[CPWindow alloc] initWithContentRect:CGRectMake(20.0, 40.0, 400.0, 125.0) styleMask:CPHUDBackgroundWindowMask | CPClosableWindowMask | CPResizableWindowMask];
 
     [alertWindow setTitle:@"Alert"];
 
@@ -42,7 +42,7 @@
         okButton = [[CPButton alloc] initWithFrame:CGRectMake(285.0, 85.0, 80.0, 20.0)];
 
     [cancelButton setTitle:@"Cancel"];
-    [cancelButton setBezelStyle:CPHUDBezelStyle];
+    [cancelButton setTheme:[CPTheme themeNamed:@"Aristo-HUD"]];
 
     // Autoresizing Mask
     [cancelButton setAutoresizingMask:CPViewMinXMargin | CPViewMinYMargin];
@@ -50,7 +50,7 @@
     [contentView addSubview:cancelButton]; 
 
     [okButton setTitle:@"OK"];
-    [okButton setBezelStyle:CPHUDBezelStyle];
+    [okButton setTheme:[CPTheme themeNamed:@"Aristo-HUD"]];
 
     // Autoresizing Mask
     [okButton setAutoresizingMask:CPViewMinXMargin | CPViewMinYMargin];

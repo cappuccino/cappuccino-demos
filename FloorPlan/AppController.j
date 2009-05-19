@@ -28,9 +28,10 @@
     [contentView setBackgroundColor:[CPColor blackColor]];
     
     // Create and Center our Container View
-    var view = [[CPView alloc] initWithFrame:CGRectMake((contentSize.width - 700.0) / 2.0, (contentSize.height - 424.0) / 2.0, 700.0, 424.0)];
+    var view = [[CPView alloc] initWithFrame:CGRectMake(0, 0, 700.0, 424.0)];
+    [view setCenter:[contentView center]];
     
-    [view setBackgroundColor:[CPColor colorWithCalibratedRed:212.0 / 255.0 green:221.0 / 255.0 blue:230.0 / 255.0 alpha:1.0]];
+    [view setBackgroundColor:[CPColor colorWithRed:212.0 / 255.0 green:221.0 / 255.0 blue:230.0 / 255.0 alpha:1.0]];
     
     [view setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
     
@@ -69,8 +70,8 @@
     
     [theWindow makeKeyAndOrderFront:self];
     
-    var undoButton = [[CPButton alloc] initWithFrame:CGRectMake(20.0, 400.0, 60.0, 18.0)],
-        redoButton = [[CPButton alloc] initWithFrame:CGRectMake(90.0, 400.0, 60.0, 18.0)];
+    var undoButton = [[CPButton alloc] initWithFrame:CGRectMake(20.0, 394.0, 60.0, 24.0)],
+        redoButton = [[CPButton alloc] initWithFrame:CGRectMake(90.0, 394.0, 60.0, 24.0)];
     
     [undoButton setTitle:"Undo"];
     [undoButton setTarget:[theWindow undoManager]];

@@ -43,7 +43,7 @@
     
     [contentView addSubview:label];
     
-    var toggleToolbarButton = [[CPButton alloc] initWithFrame:CGRectMake((CGRectGetWidth([contentView bounds]) - 100.0) / 2.0, CGRectGetMaxY([label frame]) + 10.0, 100.0, 18.0)];
+    var toggleToolbarButton = [[CPButton alloc] initWithFrame:CGRectMake((CGRectGetWidth([contentView bounds]) - 100.0) / 2.0, CGRectGetMaxY([label frame]) + 10.0, 100.0, 24.0)];
     
     [toggleToolbarButton setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin];
     [toggleToolbarButton setTitle:@"Toggle Toolbar"];
@@ -51,20 +51,25 @@
     [toggleToolbarButton setAction:@selector(toggleToolbarShown:)];
     
     [contentView addSubview:toggleToolbarButton];
-    /*
-    var toggleFullBridgeButton = [[CPButton alloc] initWithFrame:CGRectMake(150.0, CGRectGetMaxY([toggleToolbarButton frame]) + 10.0, 100.0, 18.0)];
+    
+    var toggleFullBridgeButton = [[CPButton alloc] initWithFrame:CGRectMake(140.0, CGRectGetMaxY([toggleToolbarButton frame]) + 10.0, 120.0, 24.0)];
 
     [toggleFullBridgeButton setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin];
     [toggleFullBridgeButton setTitle:@"Toggle Full Bridge"];
-    [toggleFullBridgeButton setTarget:theWindow];
-    [toggleFullBridgeButton setAction:@selector(toggleToolbarShown:)];
+    [toggleFullBridgeButton setTarget:nil];
+    [toggleFullBridgeButton setAction:@selector(toggleFullBridge:)];
     
     [contentView addSubview:toggleFullBridgeButton];
-    */
+    
     var toolbar = [[CPToolbar alloc] initWithIdentifier:@"Toolbar"];
     
     [toolbar setDelegate:self];
     [theWindow setToolbar:toolbar];
+}
+
+- (void)toggleFullBridge:(id)aSender
+{
+    [[aSender window] setFullBridge:![[aSender window] isFullBridge]];
 }
 
 @end
@@ -111,10 +116,10 @@ var PopUpButtonToolbarItemIdentifier    = @"PopUpButtonToolbarItemIdentifier",
 
     if (anItemIdentifier === PopUpButtonToolbarItemIdentifier)
     {
-        [toolbarItem setMinSize:CGSizeMake(120.0, 20.0)];
-        [toolbarItem setMaxSize:CGSizeMake(120.0, 20.0)];
+        [toolbarItem setMinSize:CGSizeMake(120.0, 24.0)];
+        [toolbarItem setMaxSize:CGSizeMake(120.0, 24.0)];
     
-        var popUpButton = [[CPPopUpButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 20.0) pullsDown:NO];
+        var popUpButton = [[CPPopUpButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 24.0) pullsDown:NO];
         
         [popUpButton addItemWithTitle:@"Option 1"];
         [popUpButton addItemWithTitle:@"Option 2"];
@@ -128,10 +133,10 @@ var PopUpButtonToolbarItemIdentifier    = @"PopUpButtonToolbarItemIdentifier",
 
     else if (anItemIdentifier === SliderToolbarItemIdentifier)
     {
-        [toolbarItem setMinSize:CGSizeMake(120.0, 20.0)];
-        [toolbarItem setMaxSize:CGSizeMake(120.0, 20.0)];
+        [toolbarItem setMinSize:CGSizeMake(120.0, 24.0)];
+        [toolbarItem setMaxSize:CGSizeMake(120.0, 24.0)];
     
-        var slider = [[CPSlider alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 20.0) ];
+        var slider = [[CPSlider alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 24.0) ];
         
         [toolbarItem setView:slider];
         

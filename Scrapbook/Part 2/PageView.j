@@ -5,9 +5,9 @@
 // Created by Francisco Tolmasky.
 //
 
-import <AppKit/CALayer.j>
+@import <AppKit/CALayer.j>
 
-import "PhotoPanel.j"
+@import "PhotoPanel.j"
 
 
 @implementation PaneLayer : CALayer

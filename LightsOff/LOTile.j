@@ -1,7 +1,7 @@
 
-import <Foundation/CPObject.j>
-import <AppKit/CPImage.j>
-import <AppKit/CALayer.j>
+@import <Foundation/CPObject.j>
+@import <AppKit/CPImage.j>
+@import <AppKit/CALayer.j>
 
 var _imagesLoaded = 0;
 

@@ -1,9 +1,6 @@
 //
 // main.j
-// PhotoAlbum
-//
-// Created by Francisco Tolmasky on July 18th, 2008.
-// Copyright 2005 - 2008, 280 North, Inc. All rights reserved.
+// iTunes Layout
 //
 
 @import <Foundation/Foundation.j>

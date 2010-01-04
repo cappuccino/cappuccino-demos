@@ -8,5 +8,9 @@
 	<string>Lights Off</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		A port of the fun iPhone game, Lights Off.
+	</string>
 </dict>
 </plist>

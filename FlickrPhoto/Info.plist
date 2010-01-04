@@ -8,5 +8,9 @@
 	<string>FlickrPhoto</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		This example creates an iPhoto like application that loads photos from Flickr. It's a good example of using toolbars, collection views, and JSONP style remote URL requests.
+	</string>
 </dict>
 </plist>

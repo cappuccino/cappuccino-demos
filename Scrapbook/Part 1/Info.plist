@@ -8,5 +8,9 @@
 	<string>Scrapbook</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		Part 1 of a multi-part application tutorial. This part shows how to handle mouse events, and how to perform simple transformations like scaling and rotation to an image.
+	</string>	
 </dict>
 </plist>

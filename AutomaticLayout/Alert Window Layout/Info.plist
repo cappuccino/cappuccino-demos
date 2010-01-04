@@ -8,5 +8,9 @@
 	<string>Alert Window Layout</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		Simple sample code illustrating how to use the CPAlert class to construct a modal alert message.
+	</string>
 </dict>
 </plist>

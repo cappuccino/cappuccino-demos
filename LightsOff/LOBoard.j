@@ -1,9 +1,9 @@
 
-import <Foundation/CPObject.j>
-import <AppKit/CPImageView.j>
-import <AppKit/CPImage.j>
-import <AppKit/CALayer.j>
-import "LOTile.j"
+@import <Foundation/CPObject.j>
+@import <AppKit/CPImageView.j>
+@import <AppKit/CPImage.j>
+@import <AppKit/CALayer.j>
+@import "LOTile.j"
 
 var _buttonArray;
 var _levelArray;

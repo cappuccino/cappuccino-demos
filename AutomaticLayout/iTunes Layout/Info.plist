@@ -5,12 +5,12 @@
 	<key>CPApplicationDelegateClass</key>
 	<string>AppController</string>
 	<key>CPBundleName</key>
-	<string>Lights Off</string>
+	<string>iTunes Layout</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
 	<key>CPDescription</key>
 	<string>
-		A port of the fun iPhone game, Lights Off.
+		Showcases the absolute basics of autoresizing masks. Play around with resizing your browser window to see the effects of the various masks, then look at the code to see how to put it together.
 	</string>
 </dict>
 </plist>

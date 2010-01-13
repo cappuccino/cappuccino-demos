@@ -5,12 +5,12 @@
 	<key>CPApplicationDelegateClass</key>
 	<string>AppController</string>
 	<key>CPBundleName</key>
-	<string>Lights Off</string>
+	<string>Alert Window Layout</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
 	<key>CPDescription</key>
 	<string>
-		A port of the fun iPhone game, Lights Off.
+		Simple sample code illustrating how to use the CPAlert class to construct a modal alert message.
 	</string>
 </dict>
 </plist>

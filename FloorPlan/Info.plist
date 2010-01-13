@@ -8,5 +8,9 @@
 	<string>FloorPlan</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		FloorPlan is a simple app to help you design the floor plan of your new apartment. The demo uses several collection views and collection view delegate methods. It also shows how to implement drag and drop, copy and paste, and undo and redo.
+	</string>
 </dict>
 </plist>

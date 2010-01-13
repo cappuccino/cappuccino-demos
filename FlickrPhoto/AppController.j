@@ -213,7 +213,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
     if (anItemIdentifier == SliderToolbarItemIdentifier)
     {
-        [toolbarItem setView:[[PhotoResizeView alloc] initWithFrame:CGRectMake(0, 0, 180, 50)]];
+        [toolbarItem setView:[[PhotoResizeView alloc] initWithFrame:CGRectMake(0, 0, 180, 32)]];
         [toolbarItem setMinSize:CGSizeMake(180, 32)];
         [toolbarItem setMaxSize:CGSizeMake(180, 32)];
         [toolbarItem setLabel:"Scale"];

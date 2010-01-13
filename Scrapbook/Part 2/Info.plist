@@ -8,5 +8,9 @@
 	<string>Scrapbook</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		Part 2 of a multi-part application tutorial. This part adds support for dragging pictures into the editing area from a library of pictures in a floating inspector.
+	</string>	
 </dict>
 </plist>

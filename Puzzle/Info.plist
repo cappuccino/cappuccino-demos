@@ -8,5 +8,11 @@
 	<string>Puzzle</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		A rough implementation of a Cappuccino based iPhone app.
+	</string>
+	<key>CPDemoExcluded</key>
+	<true />
 </dict>
 </plist>

@@ -5,8 +5,12 @@
 	<key>CPApplicationDelegateClass</key>
 	<string>AppController</string>
 	<key>CPBundleName</key>
-	<string>Hello World</string>
+	<string>Multiple Windows</string>
 	<key>CPPrincipalClass</key>
 	<string>CPApplication</string>
+	<key>CPDescription</key>
+	<string>
+		This is a collection of various windows and window styles. A good example of toolbars, full bridge windows, and platform windows.
+	</string>
 </dict>
 </plist>

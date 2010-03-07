@@ -13,7 +13,7 @@
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
-    [self showWindowWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask name:@"Main Window"];
+    [self showWindowWithContentRect:CGRectMake(50, 50, 400, 400) styleMask:CPBorderlessBridgeWindowMask name:@"Main Window"];
     [self showWindowWithContentRect:CGRectMake(600.0, 100.0, 400.0, 300.0) styleMask:CPTitledWindowMask | CPResizableWindowMask | CPClosableWindowMask name:@"Standard Window"];
     [self showWindowWithContentRect:CGRectMake(100.0, 100.0, 400.0, 300.0) styleMask:CPTitledWindowMask | CPResizableWindowMask | CPHUDBackgroundWindowMask name:@"HUD Window"];
     
@@ -52,7 +52,7 @@
     
     [contentView addSubview:toggleToolbarButton];
     
-    var toggleFullBridgeButton = [[CPButton alloc] initWithFrame:CGRectMake(140.0, CGRectGetMaxY([toggleToolbarButton frame]) + 10.0, 120.0, 24.0)];
+    var toggleFullBridgeButton = [[CPButton alloc] initWithFrame:CGRectMake((CGRectGetWidth([contentView bounds]) - 120.0) / 2.0, CGRectGetMaxY([toggleToolbarButton frame]) + 10.0, 120.0, 24.0)];
 
     [toggleFullBridgeButton setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin];
     [toggleFullBridgeButton setTitle:@"Toggle Full Bridge"];

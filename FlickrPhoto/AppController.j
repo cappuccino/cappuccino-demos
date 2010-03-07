@@ -3,8 +3,7 @@
 // FlickrPhoto
 //
 // Created by Ross Boucher.
-// Copyright 2005 - 2009, 280 North, Inc. All rights reserved.
-//
+// Copyright 2008 - 2010, 280 North, Inc. All rights reserved.
 
 @import <Foundation/Foundation.j>
 @import <AppKit/AppKit.j>
@@ -256,14 +255,16 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 /*
     This code demonstrates how to add a category to an existing class.
-    In this case, we are adding the class method +labelWithText: to 
-    the CPTextField class. Later on, we can call [CPTextField labelWithText:"foo"]
+    In this case, we are adding the class method +flickr_labelWithText: to 
+    the CPTextField class. Later on, we can call [CPTextField flickr_labelWithText:"foo"]
     to return a new text field with the string foo.
+    
+    Best practices suggest prefixing category methods with your unique prefix, to prevent collisions.
 */
 
 @implementation CPTextField (CreateLabel)
 
-+ (CPTextField)labelWithText:(CPString)aString
++ (CPTextField)flickr_labelWithText:(CPString)aString
 {
     var label = [[CPTextField alloc] initWithFrame:CGRectMakeZero()];
     
@@ -296,11 +297,11 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     
     [self addSubview:slider];
                                                              
-    var label = [CPTextField labelWithText:"50"];
+    var label = [CPTextField flickr_labelWithText:"50"];
     [label setFrameOrigin:CGPointMake(0, CGRectGetHeight(aFrame)/2.0 - 4.0)];
     [self addSubview:label];
 
-    label = [CPTextField labelWithText:"250"];
+    label = [CPTextField flickr_labelWithText:"250"];
     [label setFrameOrigin:CGPointMake(CGRectGetWidth(aFrame) - CGRectGetWidth([label frame]), CGRectGetHeight(aFrame)/2.0 - 4.0)];
     [self addSubview:label];
     

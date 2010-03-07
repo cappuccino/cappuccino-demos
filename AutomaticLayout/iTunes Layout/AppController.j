@@ -8,16 +8,17 @@
 
 - (void)applicationDidFinishLaunching:(CPNotification)aNotification
 {
+    // The end result of this layout will be the kind of master/detail/auxilliary view
+    // found in iTunes, Mail, and many other apps.
+
     var theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask],
         contentView = [theWindow contentView];
-    
-    [contentView setBackgroundColor:[CPColor colorWithCalibratedRed:255.0/255.0 green:254.0/255.0 blue:252.0/255.0 alpha:1.0]];
     
     var navigationArea = [[CPView alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, CGRectGetHeight([contentView bounds]) - 150.0)];
     
     [navigationArea setBackgroundColor:[CPColor redColor]];
     
-    // Autoresizing Mask
+    // This view will grow in height, but stay fixed width attached to the left side of the screen.
     [navigationArea setAutoresizingMask:CPViewHeightSizable | CPViewMaxXMargin];
     
     [contentView addSubview:navigationArea];
@@ -26,7 +27,7 @@
     
     [metaDataArea setBackgroundColor:[CPColor greenColor]];
     
-    // Autoresizing Mask
+    // This view will stay the same size in both directions, and fixed to the lower left corner.
     [metaDataArea setAutoresizingMask:CPViewMinYMargin | CPViewMaxXMargin];
     
     [contentView addSubview:metaDataArea];
@@ -35,7 +36,7 @@
     
     [contentArea setBackgroundColor:[CPColor blueColor]];
     
-    // Autoresizing Mask
+    // This view will grow in both height an width.
     [contentArea setAutoresizingMask:CPViewWidthSizable | CPViewHeightSizable];
     
     [contentView addSubview:contentArea];

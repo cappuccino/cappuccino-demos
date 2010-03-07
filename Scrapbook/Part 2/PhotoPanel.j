@@ -11,7 +11,7 @@ PhotoDragType = "PhotoDragType";
 
 - (id)init
 {
-    self = [self initWithContentRect:CGRectMake(0.0, 0.0, 300.0, 400.0) styleMask:CPHUDBackgroundWindowMask | CPClosableWindowMask | CPResizableWindowMask];
+    self = [self initWithContentRect:CGRectMake(50.0, 50.0, 250.0, 360.0) styleMask:CPHUDBackgroundWindowMask | CPClosableWindowMask | CPResizableWindowMask];
 
     if (self)
     {

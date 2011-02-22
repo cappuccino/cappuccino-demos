@@ -48,7 +48,7 @@ var PhotoInspectorSharedInstance    = nil;
         var contentView = [theWindow contentView],
             centerX = (CGRectGetWidth([contentView bounds]) - 135.0) / 2.0;
         
-        scaleSlider = [[CPSlider alloc] initWithFrame:CGRectMake(centerX, 13.0, 135.0, 16.0)];
+        scaleSlider = [[CPSlider alloc] initWithFrame:CGRectMake(centerX, 13.0, 135.0, 24.0)];
         
         [scaleSlider setMinValue:50];
         [scaleSlider setMaxValue:150];
@@ -68,7 +68,7 @@ var PhotoInspectorSharedInstance    = nil;
         [contentView addSubview:scaleStartLabel];
         [contentView addSubview:scaleEndLabel];
         
-        rotationSlider = [[CPSlider alloc] initWithFrame:CGRectMake(centerX, 43.0, 135.0, 16.0)];
+        rotationSlider = [[CPSlider alloc] initWithFrame:CGRectMake(centerX, 43.0, 135.0, 24.0)];
         
         [rotationSlider setMinValue:0];
         [rotationSlider setMaxValue:360];

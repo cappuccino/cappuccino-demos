@@ -219,8 +219,8 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     }
     else if (anItemIdentifier == AddToolbarItemIdentifier)
     {
-        var image = [[CPImage alloc] initWithContentsOfFile:"Resources/add.png" size:CPSizeMake(30, 25)],
-            highlighted = [[CPImage alloc] initWithContentsOfFile:"Resources/addHighlighted.png" size:CPSizeMake(30, 25)];
+        var image = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle] pathForResource:"add.png"] size:CPSizeMake(30, 25)],
+            highlighted = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle] pathForResource:"addHighlighted.png"] size:CPSizeMake(30, 25)];
             
         [toolbarItem setImage:image];
         [toolbarItem setAlternateImage:highlighted];
@@ -234,8 +234,8 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     }
     else if (anItemIdentifier == RemoveToolbarItemIdentifier)
     {        
-        var image = [[CPImage alloc] initWithContentsOfFile:"Resources/remove.png" size:CPSizeMake(30, 25)],
-            highlighted = [[CPImage alloc] initWithContentsOfFile:"Resources/removeHighlighted.png" size:CPSizeMake(30, 25)];
+        var image = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle] pathForResource:"remove.png"] size:CPSizeMake(30, 25)],
+            highlighted = [[CPImage alloc] initWithContentsOfFile:[[CPBundle mainBundle] pathForResource:"removeHighlighted.png"] size:CPSizeMake(30, 25)];
             
         [toolbarItem setImage:image];
         [toolbarItem setAlternateImage:highlighted];

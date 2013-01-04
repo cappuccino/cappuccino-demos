@@ -171,8 +171,12 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 {
     if (aCollectionView == listCollectionView)
     {
-        var listIndex = [[listCollectionView selectionIndexes] firstIndex],
-            key = [listCollectionView content][listIndex];
+        var listIndex = [[listCollectionView selectionIndexes] firstIndex];
+
+        if (listIndex === CPNotFound)
+            return;
+
+        var key = [listCollectionView content][listIndex];
 
         [photosCollectionView setContent:[photosets objectForKey:key]];
         [photosCollectionView setSelectionIndexes:[CPIndexSet indexSet]];

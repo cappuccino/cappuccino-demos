@@ -1,5 +1,6 @@
 /*
  * Jakefile
+ * FlickrPhoto
  *
  * Created by Ross Boucher on March 5, 2010.
  * Copyright 2010, Your Company All rights reserved.
@@ -26,23 +27,15 @@ app ("FlickrPhoto", function(task)
     task.setEmail("feedback @nospam@ yourcompany.com");
     task.setSummary("FlickrPhoto");
     task.setSources((new FileList("**/*.j")).exclude(FILE.join("Build", "**")));
-    task.setResources(new FileList("Resources/*"));
+    task.setResources(new FileList("Resources/**"));
     task.setIndexFilePath("index.html");
     task.setInfoPlistPath("Info.plist");
-    task.setNib2CibFlags("-R Resources/");
 
     if (configuration === "Debug")
         task.setCompilerFlags("-DDEBUG -g");
     else
         task.setCompilerFlags("-O");
 });
-
-function printResults(configuration)
-{
-    print("----------------------------")
-    print(configuration+" app built at path: "+FILE.join("Build", configuration, "FlickrPhoto"));
-    print("----------------------------")
-}
 
 task ("default", ["FlickrPhoto"], function()
 {
@@ -79,3 +72,22 @@ task ("deploy", ["release"], function()
     OS.system(["press", "-f", FILE.join("Build", "Release", "FlickrPhoto"), FILE.join("Build", "Deployment", "FlickrPhoto")]);
     printResults("Deployment")
 });
+
+task ("desktop", ["release"], function()
+{
+    FILE.mkdirs(FILE.join("Build", "Desktop", "FlickrPhoto"));
+    require("cappuccino/nativehost").buildNativeHost(FILE.join("Build", "Release", "FlickrPhoto"), FILE.join("Build", "Desktop", "FlickrPhoto", "FlickrPhoto.app"));
+    printResults("Desktop")
+});
+
+task ("run-desktop", ["desktop"], function()
+{
+    OS.system([FILE.join("Build", "Desktop", "FlickrPhoto", "FlickrPhoto.app", "Contents", "MacOS", "NativeHost"), "-i"]);
+});
+
+function printResults(configuration)
+{
+    print("----------------------------");
+    print(configuration+" app built at path: "+FILE.join("Build", configuration, "FlickrPhoto"));
+    print("----------------------------");
+}

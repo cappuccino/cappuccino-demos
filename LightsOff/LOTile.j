@@ -9,11 +9,11 @@ var _imagesLoaded = 0;
 {
 	CPImage _onImage;
 	CPImage _offImage;
-	
+
 	CPImage _onImagePressed;
 	CPImage _offImagePressed;
-	
-	
+
+
 	BOOL _on;
 	BOOL _pressed;
 }
@@ -23,7 +23,7 @@ var _imagesLoaded = 0;
     if (_imagesLoaded < 4)
         return NO;
     else
-    
+
     return YES;
 
 }
@@ -31,20 +31,20 @@ var _imagesLoaded = 0;
 -(id)init
 {
     self = [super init];
-    
+
     if (self)
     {
         _onImage = [[CPImage alloc] initWithContentsOfFile:"Resources/lo-button-on.png" size:CPSizeMake(63, 57)];
         _offImage = [[CPImage alloc] initWithContentsOfFile:"Resources/lo-button-off.png" size:CPSizeMake(63, 57)];
         _onImagePressed = [[CPImage alloc] initWithContentsOfFile:"Resources/lo-button-on-press.png" size:CPSizeMake(63, 57)];
         _offImagePressed = [[CPImage alloc] initWithContentsOfFile:"Resources/lo-button-off-press.png" size:CPSizeMake(63, 57)];
-        
+
         [_onImage setDelegate:self];
         [_offImage setDelegate:self];
         [_onImagePressed setDelegate:self];
         [_offImagePressed setDelegate:self];
     }
-    
+
     return self;
 }
 
@@ -85,32 +85,32 @@ var _imagesLoaded = 0;
 
     var bounds = [self bounds];
 
-        if (_on)
+    if (_on)
+    {
+        if (_pressed)
         {
-            if (_pressed)
-            {
-                if ([_onImagePressed loadStatus] === CPImageLoadStatusCompleted)
-                    CGContextDrawImage(aContext, bounds, _onImagePressed);
-            }
-            else
-            {
-                if ([_onImage loadStatus] === CPImageLoadStatusCompleted)
-                    CGContextDrawImage(aContext, bounds, _onImage);
-            }
+            if ([_onImagePressed loadStatus] === CPImageLoadStatusCompleted)
+                CGContextDrawImage(aContext, bounds, _onImagePressed);
         }
         else
         {
-            if (_pressed)
-            {
-                if ([_offImagePressed loadStatus] === CPImageLoadStatusCompleted)
-                   CGContextDrawImage(aContext, bounds, _offImagePressed);
-            }
-            else
-            {
-                if ([_offImage loadStatus] === CPImageLoadStatusCompleted)
-                    CGContextDrawImage(aContext, bounds, _offImage);
-            }
+            if ([_onImage loadStatus] === CPImageLoadStatusCompleted)
+                CGContextDrawImage(aContext, bounds, _onImage);
         }
+    }
+    else
+    {
+        if (_pressed)
+        {
+            if ([_offImagePressed loadStatus] === CPImageLoadStatusCompleted)
+               CGContextDrawImage(aContext, bounds, _offImagePressed);
+        }
+        else
+        {
+            if ([_offImage loadStatus] === CPImageLoadStatusCompleted)
+                CGContextDrawImage(aContext, bounds, _offImage);
+        }
+    }
 }
 
 @end

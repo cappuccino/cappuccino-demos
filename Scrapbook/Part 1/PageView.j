@@ -12,31 +12,31 @@
 {
     float       _rotationRadians;
     float       _scale;
-    
+
     CPImage     _image;
     CALayer     _imageLayer;
-    
+
     PageView    _pageView;
 }
 
 - (id)initWithPageView:(PageView)anPageView
 {
     self = [super init];
-    
+
     if (self)
     {
         _pageView = anPageView;
-        
+
         _rotationRadians = 0.0;
         _scale = 1.0;
-        
+
         _imageLayer = [CALayer layer];
         [_imageLayer setDelegate:self];
-        
-        
+
+
         [self addSublayer:_imageLayer];
     }
-    
+
     return self;
 }
 
@@ -48,7 +48,7 @@
 - (void)setBounds:(CGRect)aRect
 {
     [super setBounds:aRect];
-    
+
     [_imageLayer setPosition:CGPointMake(CGRectGetMidX(aRect), CGRectGetMidY(aRect))];
 }
 
@@ -56,12 +56,12 @@
 {
     if (_image == anImage)
         return;
-    
+
     _image = anImage;
-    
+
     if (_image)
         [_imageLayer setBounds:CGRectMake(0.0, 0.0, [_image size].width, [_image size].height)];
-    
+
     [_imageLayer setNeedsDisplay];
 }
 
@@ -69,9 +69,9 @@
 {
     if (_rotationRadians == radians)
         return;
-        
+
     _rotationRadians = radians;
-        
+
     [_imageLayer setAffineTransform:CGAffineTransformScale(CGAffineTransformMakeRotation(_rotationRadians), _scale, _scale)];
 }
 
@@ -79,9 +79,9 @@
 {
     if (_scale == aScale)
         return;
-    
+
     _scale = aScale;
-    
+
     [_imageLayer setAffineTransform:CGAffineTransformScale(CGAffineTransformMakeRotation(_rotationRadians), _scale, _scale)];
 }
 
@@ -99,7 +99,7 @@
 - (void)drawLayer:(CALayer)aLayer inContext:(CGContext)aContext
 {
     var bounds = [aLayer bounds];
-    
+
     if ([_image loadStatus] != CPImageLoadStatusCompleted)
         [_image setDelegate:self];
     else
@@ -112,46 +112,46 @@
 {
     CALayer     _borderLayer;
     CALayer     _rootLayer;
-    
+
     PaneLayer   _paneLayer;
 }
 
 - (id)initWithFrame:(CGRect)aFrame
 {
     self = [super initWithFrame:aFrame];
-    
+
     if (self)
     {
         _rootLayer = [CALayer layer];
-        
+
         [self setWantsLayer:YES];
         [self setLayer:_rootLayer];
-        
+
         [_rootLayer setBackgroundColor:[CPColor whiteColor]];
-        
+
         _paneLayer = [[PaneLayer alloc] initWithPageView:self];
-        
-        [_paneLayer setBounds:CGRectMake(0.0, 0.0, 400 - 2* 40.0, 400.0 - 2 * 40.0)];
+
+        [_paneLayer setBounds:CGRectMake(0.0, 0.0, 400 - 2 * 40.0, 400.0 - 2 * 40.0)];
         [_paneLayer setAnchorPoint:CGPointMakeZero()];
         [_paneLayer setPosition:CGPointMake(40.0, 40.0)];
-        
+
         [_paneLayer setImage:[[CPImage alloc] initWithContentsOfFile:@"Resources/sample.jpg" size:CGSizeMake(500.0, 430.0)]];
-        
+
         [_rootLayer addSublayer:_paneLayer];
-        
+
         [_paneLayer setNeedsDisplay];
-        
+
         _borderLayer = [CALayer layer];
-        
+
         [_borderLayer setAnchorPoint:CGPointMakeZero()];
         [_borderLayer setBounds:[self bounds]];
         [_borderLayer setDelegate:self];
-        
+
         [_rootLayer addSublayer:_borderLayer];
-        
+
         [_rootLayer setNeedsDisplay];
     }
-    
+
     return self;
 }
 

@@ -74,6 +74,8 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     [listCollectionView setVerticalMargin:0.0];
     [listCollectionView setAutoresizingMask:CPViewWidthSizable];
 
+    [listCollectionView addObserver:self forKeyPath:@"selectionIndexes" options:CPKeyValueObservingOptionNew | CPKeyValueObservingOptionInitial context:nil];
+
     //finally, we put our collection view inside the scroll view as it's document view, so it can be scrolled
     [listScrollView setDocumentView:listCollectionView];
 
@@ -109,7 +111,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     [theWindow orderFront:self];
 
     //get the most interesting photos on flickr
-    var request = [CPURLRequest requestWithURL:"http://www.flickr.com/services/rest/?method=flickr.interestingness.getList&per_page=20&format=json&api_key=ca4dd89d3dfaeaf075144c3fdec76756"];
+    var request = [CPURLRequest requestWithURL:"https://www.flickr.com/services/rest/?method=flickr.interestingness.getList&per_page=20&format=json&api_key=ca4dd89d3dfaeaf075144c3fdec76756"];
 
     // see important note about CPJSONPConnection above
     var connection = [CPJSONPConnection sendRequest:request callback:"jsoncallback" delegate:self];
@@ -167,9 +169,9 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     [photosCollectionView setMaxItemSize:CGSizeMake(newSize, newSize)];
 }
 
-- (void)collectionViewDidChangeSelection:(CPCollectionView)aCollectionView
+- (void)observeValueForKeyPath:(CPString)keyPath ofObject:(id)object change:(CPDictionary)change context:(void)context
 {
-    if (aCollectionView == listCollectionView)
+    if (object == listCollectionView && keyPath == @"selectionIndexes")
     {
         var listIndex = [[listCollectionView selectionIndexes] firstIndex];
 
@@ -324,6 +326,9 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 - (void)setRepresentedObject:(JSObject)anObject
 {
+    if (!anObject)
+        return;
+
     if (!label)
     {
         label = [[CPTextField alloc] initWithFrame:CGRectInset([self bounds], 4, 4)];
@@ -376,6 +381,9 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 - (void)setRepresentedObject:(JSObject)anObject
 {
+    if (!anObject)
+        return;
+
     if (!imageView)
     {
         imageView = [[CPImageView alloc] initWithFrame:CGRectMakeCopy([self bounds])];
@@ -426,10 +434,11 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
 function urlForFlickrPhoto(photo)
 {
-    return "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id+"_" + photo.secret + ".jpg";
+    return "https://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id+"_" + photo.secret + ".jpg";
 }
 
 function thumbForFlickrPhoto(photo)
 {
-    return "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_m.jpg";
+    console.error(photo)
+    return "https://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_m.jpg";
 }

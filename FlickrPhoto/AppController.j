@@ -439,6 +439,5 @@ function urlForFlickrPhoto(photo)
 
 function thumbForFlickrPhoto(photo)
 {
-    console.error(photo)
     return "https://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_m.jpg";
 }

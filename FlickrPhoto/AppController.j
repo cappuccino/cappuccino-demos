@@ -180,7 +180,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
         var key = [listCollectionView content][listIndex];
 
-        [photosCollectionView setContent:[photosets objectForKey:key]];
+        [photosCollectionView setContent:([photosets objectForKey:key] || [])];
         [photosCollectionView setSelectionIndexes:[CPIndexSet indexSet]];
     }
 }

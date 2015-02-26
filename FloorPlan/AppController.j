@@ -22,7 +22,8 @@
 {
     var theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask],
         contentView = [theWindow contentView],
-        contentSize = [contentView bounds].size;
+        contentSize = [contentView bounds].size,
+        scrollView = [[CPScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 176.0, 400.0)];
 
     // Make the background black.
     [contentView setBackgroundColor:[CPColor blackColor]];
@@ -54,6 +55,9 @@
 
     furnitureCollectionView = [[CPCollectionView alloc] initWithFrame:CGRectMake(0.0, 0.0, 176.0, 400.0)];
 
+    [scrollView setDocumentView:furnitureCollectionView];
+    [view addSubview:scrollView];
+
     [furnitureCollectionView setMinItemSize:CGSizeMake(176.0, 50.0)];
     [furnitureCollectionView setMaxItemSize:CGSizeMake(176.0, 50.0)];
 
@@ -62,11 +66,8 @@
     [itemPrototype setView:[[FurnitureItemView alloc] initWithFrame:CGRectMakeZero()]];
 
     [furnitureCollectionView setItemPrototype:itemPrototype];
-
     [furnitureCollectionView setContent:furnitureViews];
     [furnitureCollectionView setDelegate:self];
-
-    [view addSubview:furnitureCollectionView];
 
     [theWindow makeKeyAndOrderFront:self];
 
@@ -133,7 +134,7 @@
 
 - (void)setSelected:(BOOL)isSelected
 {
-    [self setBackgroundColor:isSelected ? [CPColor blueColor] : nil];
+    [self setBackgroundColor:isSelected ? [CPColor colorWithRed:0.302 green:0.478 blue:0.823 alpha:1] : nil];
     [textField setTextColor:isSelected ? [CPColor whiteColor] : [CPColor blackColor]];
 }
 

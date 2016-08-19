@@ -126,7 +126,7 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     if (string)
     {
         //create a new request for the photos with the tag returned from the javascript prompt
-        var request = [CPURLRequest requestWithURL:"http://www.flickr.com/services/rest/?"+
+        var request = [CPURLRequest requestWithURL:"https://www.flickr.com/services/rest/?"+
                                                     "method=flickr.photos.search&tags="+encodeURIComponent(string)+
                                                     "&media=photos&machine_tag_mode=any&per_page=20&format=json&api_key=ca4dd89d3dfaeaf075144c3fdec76756"];
 
